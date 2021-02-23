@@ -18,7 +18,7 @@ Please note that I am not a very proficient CSS/Javascript programmer. I welcome
 - To add a title to the table of contents, either add the following to your metadata: `toc-title: MY-TITLE` or add the option `--metadat=toc-title:"MY-TITLE"` when producing the HTML.
 - The filter itself is added by using `--lua-filter toc-css.lua`.
 
-As an example, consider the following command to convert this `README.md` into `README.html`:
+As an example, consider the following command to convert this `README.md` into [`README.html`](https://gitcdn.link/repo/cysouw/toc-css/main/README.html):
 
 ```
 pandoc README.md \
