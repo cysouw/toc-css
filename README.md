@@ -1,4 +1,4 @@
-# toc-css
+# Introducing toc-css
 
 Pandoc Lua Filter to add floating table of contents to HTML
 

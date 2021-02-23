@@ -245,7 +245,7 @@
 <nav id="TOC" role="doc-toc">
 <h2 id="toc-title">CONTENTS</h2>
 <ul>
-<li><a href="#toc-css"><span class="toc-section-number">1</span> toc-css</a>
+<li><a href="#introducing-toc-css"><span class="toc-section-number">1</span> Introducing toc-css</a>
 <ul>
 <li><a href="#pandoc"><span class="toc-section-number">1.1</span> Pandoc</a></li>
 <li><a href="#usage"><span class="toc-section-number">1.2</span> Usage</a></li>
@@ -272,7 +272,7 @@
 </ul></li>
 </ul>
 </nav>
-<h1 data-number="1" id="toc-css"><span class="header-section-number">1</span> toc-css</h1>
+<h1 data-number="1" id="introducing-toc-css"><span class="header-section-number">1</span> Introducing toc-css</h1>
 <p>Pandoc Lua Filter to add floating table of contents to HTML</p>
 <p><strong>Michael Cysouw</strong> <a href="mailto:cysouw@mac.com" class="email">cysouw@mac.com</a></p>
 <h2 data-number="1.1" id="pandoc"><span class="header-section-number">1.1</span> Pandoc</h2>
@@ -285,7 +285,7 @@
 <li>To add a title to the table of contents, either add the following to your metadata: <code>toc-title: MY-TITLE</code> or add the option <code>--metadat=toc-title:"MY-TITLE"</code> when producing the HTML.</li>
 <li>The filter itself is added by using <code>--lua-filter toc-css.lua</code>.</li>
 </ul>
-<p>As an example, consider the following command to convert this <code>README.md</code> into <code>README.html</code>:</p>
+<p>As an example, consider the following command to convert this <code>README.md</code> into <a href="https://gitcdn.link/repo/cysouw/toc-css/main/README.html"><code>README.html</code></a>:</p>
 <pre><code>pandoc README.md \
     --to html \
     --output README.html \

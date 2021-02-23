@@ -172,10 +172,11 @@ script = [[
 
 function addCSS (meta)
   -- read current "header-includes" from metadata, or make a new one
+  -- and add css to the end of "header-includes"
   local current = meta['header-includes'] or pandoc.MetaList{meta['header-includes']}
-  -- add css to the end of "header-includes"
   current[#current+1] = pandoc.MetaBlocks(pandoc.RawBlock("html", css))
   meta['header-includes'] = current
+  -- add default toc-title if there is none
   if meta['toc-title'] == nil then
     meta['toc-title'] = "CONTENTS"
   end
