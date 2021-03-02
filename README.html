@@ -181,7 +181,7 @@
     font-size: 150%;
   }
   nav h2:after {
-    content: " ◀";
+    content: " ◂";
   }
   nav li {
     margin-left: -0.5em;
@@ -190,7 +190,7 @@
     text-overflow: ellipsis;
   }
   nav li > a:not(:only-child):before {
-    content: "▶ ";
+    content: "▸ ";
   }
   nav li > a:only-child {
     margin-left: 0.75em;
@@ -209,7 +209,7 @@
     margin-bottom: 0.2em;
     transition: 0.5s;
   }
-  .bodysmall {
+  .paddingleft {
     padding-left: 9cm;
     transition: 0.5s;
   }
@@ -220,7 +220,7 @@
     transition: 0.5s;
   }
   .navside h2:after {
-    content: " ▶";
+    content: " ▸";
   }
   .navshown {
     width: 50%;
@@ -234,7 +234,7 @@
     margin-left: -1em;
   }
   .subShow > a:not(:only-child):before {
-    content: "▼ ";
+    content: "▾ ";
   }
   </style>
 </head>
@@ -243,12 +243,13 @@
 <h1 class="title">Introducing toc-css</h1>
 </header>
 <nav id="TOC" role="doc-toc">
-<h2 id="toc-title">CONTENTS</h2>
+<h2 id="toc-title">Table of Contents</h2>
 <ul>
 <li><a href="#introducing-toc-css"><span class="toc-section-number">1</span> Introducing toc-css</a>
 <ul>
 <li><a href="#pandoc"><span class="toc-section-number">1.1</span> Pandoc</a></li>
 <li><a href="#usage"><span class="toc-section-number">1.2</span> Usage</a></li>
+<li><a href="#functionality"><span class="toc-section-number">1.3</span> Functionality</a></li>
 </ul></li>
 <li><a href="#another-first-level-heading"><span class="toc-section-number">2</span> Another first level heading</a>
 <ul>
@@ -277,7 +278,7 @@
 <p><strong>Michael Cysouw</strong> <a href="mailto:cysouw@mac.com" class="email">cysouw@mac.com</a></p>
 <h2 data-number="1.1" id="pandoc"><span class="header-section-number">1.1</span> Pandoc</h2>
 <p><a href="https://pandoc.org">Pandoc</a> is a fabulous system to prepare text and export it to (almost) every format of your liking. Pandoc includes an option to add a table of contents, but by default this is just added at the top of the document. This Lua filter adds some better layout of the table of contents for HTML documents.</p>
-<p>The filter adds a bit CSS and vanilla Javascript to the HTML output as created by the Pandoc defaults. The actual html is not changed in any way. If you have not added a title for the table of contents then the title “CONTENTS” is automatically added.</p>
+<p>The filter adds a bit CSS and vanilla Javascript to the HTML output as created by the Pandoc defaults. The actual html is not changed in any way. If you have not added a title for the table of contents then the title “Contents” is automatically added.</p>
 <p>Please note that I am not a very proficient CSS/Javascript programmer. I welcome suggestions and improvements! The current version was specifically made for a long book with a very complex structure, the current version can be found <a href="https://gitcdn.link/repo/cysouw/diathesis/main/cysouwDiathesisManuscript.html">here</a> as an example.</p>
 <h2 data-number="1.2" id="usage"><span class="header-section-number">1.2</span> Usage</h2>
 <ul>
@@ -293,9 +294,16 @@
     --standalone \
     --toc \
     --number-sections \
+    --metadata toc-title=&quot;Table of Contents&quot; \
     --metadata title=&quot;Introducing toc-css&quot;</code></pre>
-<p>The remaining headers in this readme are only added to showcase the result in the HTML file.</p>
+<h2 data-number="1.3" id="functionality"><span class="header-section-number">1.3</span> Functionality</h2>
+<ul>
+<li>If the window is large enough, the table of contents will be shown to the side. With smaller windows it will be hidden. Show/hide also works on resizing the window.</li>
+<li>Clicking on the ‘hamburger’ will expand the view. The tab-key will also expand the view. Clicking again on the ‘hamburger’ will hide the contents again. The escape-key also works, and so does clicking anywhere outside of the expanded view.</li>
+<li>Clicking on the triangle to the right of the title will fix the contents to the side, or hide it.</li>
+</ul>
 <h1 data-number="2" id="another-first-level-heading"><span class="header-section-number">2</span> Another first level heading</h1>
+<p>The remaining headers in this readme are only added to showcase the result in the HTML file.</p>
 <h2 data-number="2.1" id="with-subheading"><span class="header-section-number">2.1</span> With subheading</h2>
 <h3 data-number="2.1.1" id="going-deeper"><span class="header-section-number">2.1.1</span> Going deeper</h3>
 <h3 data-number="2.1.2" id="more"><span class="header-section-number">2.1.2</span> More</h3>
@@ -320,7 +328,7 @@
     if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
       n.classList.toggle("navshown");
     } else {
-      b.classList.toggle("bodysmall");
+      b.classList.toggle("paddingleft");
       n.classList.toggle("navside");
       n.classList.remove("navshown");
     };
@@ -329,7 +337,7 @@
   // by default show TOC in large window
   window.onload = function() {
     if (window.innerWidth > 1000) {
-      b.classList.add("bodysmall");
+      b.classList.add("paddingleft");
       n.classList.add("navside");
     };
   };
@@ -337,28 +345,51 @@
   // show/hide TOC on resize
   window.onresize = function () {
     if (window.innerWidth > 1000) {
-      b.classList.add("bodysmall");
+      b.classList.add("paddingleft");
       n.classList.add("navside");
     } else {
-      b.classList.remove("bodysmall");
+      b.classList.remove("paddingleft");
       n.classList.remove("navside");
     };
   };
 
   // show/hide subsections
-  function toggleSub(lis) {
-    for (const li of lis) {
-      li.addEventListener('click', function (e) {
-        if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
-          li.classList.toggle('subShow');
-          e.preventDefault();
-        };
-      });
-    };
+  const allLis = document.querySelectorAll("nav li");
+
+  for (const li of allLis) {
+    li.addEventListener('click', function (e) {
+      if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
+        li.classList.toggle('subShow');
+        e.preventDefault();
+      };
+      if (e.clientX > e.currentTarget.getBoundingClientRect().left + 3*buttonsize) {
+        n.classList.remove("navshown");
+      };
+    });
   };
 
-  const allLis = document.querySelectorAll("nav li");
-  toggleSub(allLis);
+  // show full nav on tab, hide full nav on escape
+  document.addEventListener("keydown", function (e) {
+    if (e.which === 27) {
+      n.classList.remove("navshown");
+      e.preventDefault();
+    };
+    if (e.which === 9) {
+      n.classList.add("navshown");
+      e.preventDefault();
+    };
+  });
+
+  // hide full nav when clicked outside
+  document.addEventListener("click", function() {
+    if (n.classList.contains("navshown")) {
+      if (!n.contains(e.target)) {
+        n.classList.remove("navshown");
+      };
+    };
+  });
+
+
 
 </script>
 </body>

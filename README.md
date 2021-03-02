@@ -8,7 +8,7 @@ Pandoc Lua Filter to add floating table of contents to HTML
 
 [Pandoc](https://pandoc.org) is a fabulous system to prepare text and export it to (almost) every format of your liking. Pandoc includes an option to add a table of contents, but by default this is just added at the top of the document. This Lua filter adds some better layout of the table of contents for HTML documents.
 
-The filter adds a bit CSS and vanilla Javascript to the HTML output as created by the Pandoc defaults. The actual html is not changed in any way. If you have not added a title for the table of contents then the title "CONTENTS" is automatically added.
+The filter adds a bit CSS and vanilla Javascript to the HTML output as created by the Pandoc defaults. The actual html is not changed in any way. If you have not added a title for the table of contents then the title "Contents" is automatically added.
 
 Please note that I am not a very proficient CSS/Javascript programmer. I welcome suggestions and improvements! The current version was specifically made for a long book with a very complex structure, the current version can be found [here](https://gitcdn.link/repo/cysouw/diathesis/main/cysouwDiathesisManuscript.html) as an example.
 
@@ -28,12 +28,19 @@ pandoc README.md \
     --standalone \
     --toc \
     --number-sections \
+    --metadata toc-title="Table of Contents" \
     --metadata title="Introducing toc-css"
 ```
 
-The remaining headers in this readme are only added to showcase the result in the HTML file.
+## Functionality
+
+- If the window is large enough, the table of contents will be shown to the side. With smaller windows it will be hidden. Show/hide also works on resizing the window.
+- Clicking on the 'hamburger' will expand the view. The tab-key will also expand the view. Clicking again on the 'hamburger' will hide the contents again. The escape-key also works, and so does clicking anywhere outside of the expanded view.
+- Clicking on the triangle to the right of the title will fix the contents to the side, or hide it.
 
 # Another first level heading
+
+The remaining headers in this readme are only added to showcase the result in the HTML file.
 
 ## With subheading
 

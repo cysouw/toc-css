@@ -51,7 +51,7 @@ nav h2:before {
   font-size: 150%;
 }
 nav h2:after {
-  content: " ◀";
+  content: " ◂";
 }
 nav li {
   margin-left: -0.5em;
@@ -60,7 +60,7 @@ nav li {
   text-overflow: ellipsis;
 }
 nav li > a:not(:only-child):before {
-  content: "▶ ";
+  content: "▸ ";
 }
 nav li > a:only-child {
   margin-left: 0.75em;
@@ -79,7 +79,7 @@ nav ul li ul  {
   margin-bottom: 0.2em;
   transition: 0.5s;
 }
-.bodysmall {
+.paddingleft {
   padding-left: 9cm;
   transition: 0.5s;
 }
@@ -90,7 +90,7 @@ nav ul li ul  {
   transition: 0.5s;
 }
 .navside h2:after {
-  content: " ▶";
+  content: " ▸";
 }
 .navshown {
   width: 50%;
@@ -104,7 +104,7 @@ nav ul li ul  {
   margin-left: -1em;
 }
 .subShow > a:not(:only-child):before {
-  content: "▼ ";
+  content: "▾ ";
 }
 </style>
 ]]
@@ -125,7 +125,7 @@ script = [[
     if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
       n.classList.toggle("navshown");
     } else {
-      b.classList.toggle("bodysmall");
+      b.classList.toggle("paddingleft");
       n.classList.toggle("navside");
       n.classList.remove("navshown");
     };
@@ -134,7 +134,7 @@ script = [[
   // by default show TOC in large window
   window.onload = function() {
     if (window.innerWidth > 1000) {
-      b.classList.add("bodysmall");
+      b.classList.add("paddingleft");
       n.classList.add("navside");
     };
   };
@@ -142,28 +142,51 @@ script = [[
   // show/hide TOC on resize
   window.onresize = function () {
     if (window.innerWidth > 1000) {
-      b.classList.add("bodysmall");
+      b.classList.add("paddingleft");
       n.classList.add("navside");
     } else {
-      b.classList.remove("bodysmall");
+      b.classList.remove("paddingleft");
       n.classList.remove("navside");
     };
   };
 
   // show/hide subsections
-  function toggleSub(lis) {
-    for (const li of lis) {
-      li.addEventListener('click', function (e) {
-        if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
-          li.classList.toggle('subShow');
-          e.preventDefault();
-        };
-      });
-    };
+  const allLis = document.querySelectorAll("nav li");
+
+  for (const li of allLis) {
+    li.addEventListener('click', function (e) {
+      if (e.clientX < e.currentTarget.getBoundingClientRect().left + buttonsize) {
+        li.classList.toggle('subShow');
+        e.preventDefault();
+      };
+      if (e.clientX > e.currentTarget.getBoundingClientRect().left + 3*buttonsize) {
+        n.classList.remove("navshown");
+      };
+    });
   };
 
-  const allLis = document.querySelectorAll("nav li");
-  toggleSub(allLis);
+  // show full nav on tab, hide full nav on escape
+  document.addEventListener("keydown", function (e) {
+    if (e.which === 27) {
+      n.classList.remove("navshown");
+      e.preventDefault();
+    };
+    if (e.which === 9) {
+      n.classList.add("navshown");
+      e.preventDefault();
+    };
+  });
+
+  // hide full nav when clicked outside
+  document.addEventListener("click", function() {
+    if (n.classList.contains("navshown")) {
+      if (!n.contains(e.target)) {
+        n.classList.remove("navshown");
+      };
+    };
+  });
+
+
 
 </script>
 ]]
@@ -178,7 +201,7 @@ function addCSS (meta)
   meta['header-includes'] = current
   -- add default toc-title if there is none
   if meta['toc-title'] == nil then
-    meta['toc-title'] = "CONTENTS"
+    meta['toc-title'] = "Contents"
   end
   -- return metadata
   return(meta)
