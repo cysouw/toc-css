@@ -178,15 +178,13 @@ script = [[
   });
 
   // hide full nav when clicked outside
-  document.addEventListener("click", function() {
+  document.addEventListener("click", function(e) {
     if (n.classList.contains("navshown")) {
       if (!n.contains(e.target)) {
         n.classList.remove("navshown");
       };
     };
   });
-
-
 
 </script>
 ]]
