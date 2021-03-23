@@ -118,7 +118,7 @@ script = [[
 
   const b = document.querySelector("body");
   const n = document.querySelector("nav");
-  const buttonsize = 15;
+  const buttonsize = 20;
 
   // click on "toc-title" to show TOC to the side
   document.querySelector("#toc-title").addEventListener("click", function(e) {
