@@ -54,7 +54,7 @@ nav h2:after {
   content: " ◂";
 }
 nav li {
-  margin-left: -0.5em;
+  margin-left: 1em;
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;

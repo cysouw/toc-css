@@ -21,7 +21,7 @@
       padding-top: 50px;
       padding-bottom: 50px;
       hyphens: auto;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
@@ -29,6 +29,9 @@
       body {
         font-size: 0.9em;
         padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
       }
     }
     @media print {
@@ -92,6 +95,7 @@
     pre code {
       padding: 0;
       overflow: visible;
+      overflow-wrap: normal;
     }
     .sourceCode {
      background-color: transparent;
@@ -133,6 +137,12 @@
     #TOC li {
       list-style: none;
     }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
     #TOC a:not(:hover) {
       text-decoration: none;
     }
@@ -144,9 +154,6 @@
     ul.task-list{list-style: none;}
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
    
   <!-- CSS added by filter 'toc-css.lua' for TOC hovering to the side -->
   <style>
@@ -184,7 +191,7 @@
     content: " ◂";
   }
   nav li {
-    margin-left: -0.5em;
+    margin-left: 1em;
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -237,6 +244,9 @@
     content: "▾ ";
   }
   </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
@@ -245,48 +255,90 @@
 <nav id="TOC" role="doc-toc">
 <h2 id="toc-title">Table of Contents</h2>
 <ul>
-<li><a href="#introducing-toc-css"><span class="toc-section-number">1</span> Introducing toc-css</a>
+<li><a href="#introducing-toc-css"><span
+class="toc-section-number">1</span> Introducing toc-css</a>
 <ul>
-<li><a href="#pandoc"><span class="toc-section-number">1.1</span> Pandoc</a></li>
-<li><a href="#usage"><span class="toc-section-number">1.2</span> Usage</a></li>
-<li><a href="#functionality"><span class="toc-section-number">1.3</span> Functionality</a></li>
+<li><a href="#pandoc"><span class="toc-section-number">1.1</span>
+Pandoc</a></li>
+<li><a href="#usage"><span class="toc-section-number">1.2</span>
+Usage</a></li>
+<li><a href="#functionality"><span class="toc-section-number">1.3</span>
+Functionality</a></li>
 </ul></li>
-<li><a href="#another-first-level-heading"><span class="toc-section-number">2</span> Another first level heading</a>
+<li><a href="#another-first-level-heading"><span
+class="toc-section-number">2</span> Another first level heading</a>
 <ul>
-<li><a href="#with-subheading"><span class="toc-section-number">2.1</span> With subheading</a>
+<li><a href="#with-subheading"><span
+class="toc-section-number">2.1</span> With subheading</a>
 <ul>
-<li><a href="#going-deeper"><span class="toc-section-number">2.1.1</span> Going deeper</a></li>
-<li><a href="#more"><span class="toc-section-number">2.1.2</span> More</a></li>
-<li><a href="#lets-try-a-completely-long-and-superfluous-title"><span class="toc-section-number">2.1.3</span> Let’s try a completely long and superfluous title</a></li>
+<li><a href="#going-deeper"><span
+class="toc-section-number">2.1.1</span> Going deeper</a></li>
+<li><a href="#more"><span class="toc-section-number">2.1.2</span>
+More</a></li>
+<li><a href="#lets-try-a-completely-long-and-superfluous-title"><span
+class="toc-section-number">2.1.3</span> Let’s try a completely long and
+superfluous title</a></li>
 </ul></li>
-<li><a href="#another-subheading"><span class="toc-section-number">2.2</span> Another subheading</a>
+<li><a href="#another-subheading"><span
+class="toc-section-number">2.2</span> Another subheading</a>
 <ul>
-<li><a href="#example-1"><span class="toc-section-number">2.2.1</span> Example 1</a></li>
-<li><a href="#example-2"><span class="toc-section-number">2.2.2</span> Example 2</a></li>
-<li><a href="#example-3"><span class="toc-section-number">2.2.3</span> Example 3</a></li>
+<li><a href="#example-1"><span class="toc-section-number">2.2.1</span>
+Example 1</a></li>
+<li><a href="#example-2"><span class="toc-section-number">2.2.2</span>
+Example 2</a></li>
+<li><a href="#example-3"><span class="toc-section-number">2.2.3</span>
+Example 3</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#next-chapter"><span class="toc-section-number">3</span> Next Chapter</a>
+<li><a href="#next-chapter"><span class="toc-section-number">3</span>
+Next Chapter</a>
 <ul>
-<li><a href="#next-subheading"><span class="toc-section-number">3.1</span> Next Subheading</a></li>
-<li><a href="#another-very-long-title-that-will-not-fit"><span class="toc-section-number">3.2</span> Another very long title that will not fit</a></li>
+<li><a href="#next-subheading"><span
+class="toc-section-number">3.1</span> Next Subheading</a></li>
+<li><a href="#another-very-long-title-that-will-not-fit"><span
+class="toc-section-number">3.2</span> Another very long title that will
+not fit</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 data-number="1" id="introducing-toc-css"><span class="header-section-number">1</span> Introducing toc-css</h1>
+<h1 data-number="1" id="introducing-toc-css"><span
+class="header-section-number">1</span> Introducing toc-css</h1>
 <p>Pandoc Lua Filter to add floating table of contents to HTML</p>
-<p><strong>Michael Cysouw</strong> <a href="mailto:cysouw@mac.com" class="email">cysouw@mac.com</a></p>
-<h2 data-number="1.1" id="pandoc"><span class="header-section-number">1.1</span> Pandoc</h2>
-<p><a href="https://pandoc.org">Pandoc</a> is a fabulous system to prepare text and export it to (almost) every format of your liking. Pandoc includes an option to add a table of contents, but by default this is just added at the top of the document. This Lua filter adds some better layout of the table of contents for HTML documents.</p>
-<p>The filter adds a bit CSS and vanilla Javascript to the HTML output as created by the Pandoc defaults. The actual html is not changed in any way. If you have not added a title for the table of contents then the title “Contents” is automatically added.</p>
-<p>Please note that I am not a very proficient CSS/Javascript programmer. I welcome suggestions and improvements! The current version was specifically made for a long book with a very complex structure, the current version can be found <a href="https://gitcdn.link/repo/cysouw/diathesis/main/cysouwDiathesisManuscript.html">here</a> as an example.</p>
-<h2 data-number="1.2" id="usage"><span class="header-section-number">1.2</span> Usage</h2>
+<p><strong>Michael Cysouw</strong> <a href="mailto:cysouw@mac.com"
+class="email">cysouw@mac.com</a></p>
+<h2 data-number="1.1" id="pandoc"><span
+class="header-section-number">1.1</span> Pandoc</h2>
+<p><a href="https://pandoc.org">Pandoc</a> is a fabulous system to
+prepare text and export it to (almost) every format of your liking.
+Pandoc includes an option to add a table of contents, but by default
+this is just added at the top of the document. This Lua filter adds some
+better layout of the table of contents for HTML documents.</p>
+<p>The filter adds a bit CSS and vanilla Javascript to the HTML output
+as created by the Pandoc defaults. The actual html is not changed in any
+way. If you have not added a title for the table of contents then the
+title “Contents” is automatically added.</p>
+<p>Please note that I am not a very proficient CSS/Javascript
+programmer. I welcome suggestions and improvements! The current version
+was specifically made for a long book with a very complex structure, the
+current version can be found <a
+href="https://gitcdn.link/repo/cysouw/diathesis/main/cysouwDiathesisManuscript.html">here</a>
+as an example.</p>
+<h2 data-number="1.2" id="usage"><span
+class="header-section-number">1.2</span> Usage</h2>
 <ul>
-<li>For this filter to work, the HTML export needs to have the options <code>--standalone</code> and <code>--toc</code> to produce the basic table of contents.</li>
-<li>To add a title to the table of contents, either add the following to your metadata: <code>toc-title: MY-TITLE</code> or add the option <code>--metadat=toc-title:"MY-TITLE"</code> when producing the HTML.</li>
-<li>The filter itself is added by using <code>--lua-filter toc-css.lua</code>.</li>
+<li>For this filter to work, the HTML export needs to have the options
+<code>--standalone</code> and <code>--toc</code> to produce the basic
+table of contents.</li>
+<li>To add a title to the table of contents, either add the following to
+your metadata: <code>toc-title: MY-TITLE</code> or add the option
+<code>--metadat=toc-title:"MY-TITLE"</code> when producing the
+HTML.</li>
+<li>The filter itself is added by using
+<code>--lua-filter toc-css.lua</code>.</li>
 </ul>
-<p>As an example, consider the following command to convert this <code>README.md</code> into <a href="https://gitcdn.link/repo/cysouw/toc-css/main/README.html"><code>README.html</code></a>:</p>
+<p>As an example, consider the following command to convert this
+<code>README.md</code> into <a
+href="https://gitcdn.link/repo/cysouw/toc-css/main/README.html"><code>README.html</code></a>:</p>
 <pre><code>pandoc README.md \
     --to html \
     --output README.html \
@@ -296,25 +348,49 @@
     --number-sections \
     --metadata toc-title=&quot;Table of Contents&quot; \
     --metadata title=&quot;Introducing toc-css&quot;</code></pre>
-<h2 data-number="1.3" id="functionality"><span class="header-section-number">1.3</span> Functionality</h2>
+<h2 data-number="1.3" id="functionality"><span
+class="header-section-number">1.3</span> Functionality</h2>
 <ul>
-<li>If the window is large enough, the table of contents will be shown to the side. With smaller windows it will be hidden. Show/hide also works on resizing the window.</li>
-<li>Clicking on the ‘hamburger’ will expand the view. The tab-key will also expand the view. Clicking again on the ‘hamburger’ will hide the contents again. The escape-key also works, and so does clicking anywhere outside of the expanded view.</li>
-<li>Clicking on the triangle to the right of the title will fix the contents to the side, or hide it.</li>
+<li>If the window is large enough, the table of contents will be shown
+to the side. With smaller windows it will be hidden. Show/hide also
+works on resizing the window.</li>
+<li>Clicking on the ‘hamburger’ will expand the view. The tab-key will
+also expand the view. Clicking again on the ‘hamburger’ will hide the
+contents again. The escape-key also works, and so does clicking anywhere
+outside of the expanded view.</li>
+<li>Clicking on the triangle to the right of the title will fix the
+contents to the side, or hide it.</li>
 </ul>
-<h1 data-number="2" id="another-first-level-heading"><span class="header-section-number">2</span> Another first level heading</h1>
-<p>The remaining headers in this readme are only added to showcase the result in the HTML file.</p>
-<h2 data-number="2.1" id="with-subheading"><span class="header-section-number">2.1</span> With subheading</h2>
-<h3 data-number="2.1.1" id="going-deeper"><span class="header-section-number">2.1.1</span> Going deeper</h3>
-<h3 data-number="2.1.2" id="more"><span class="header-section-number">2.1.2</span> More</h3>
-<h3 data-number="2.1.3" id="lets-try-a-completely-long-and-superfluous-title"><span class="header-section-number">2.1.3</span> Let’s try a completely long and superfluous title</h3>
-<h2 data-number="2.2" id="another-subheading"><span class="header-section-number">2.2</span> Another subheading</h2>
-<h3 data-number="2.2.1" id="example-1"><span class="header-section-number">2.2.1</span> Example 1</h3>
-<h3 data-number="2.2.2" id="example-2"><span class="header-section-number">2.2.2</span> Example 2</h3>
-<h3 data-number="2.2.3" id="example-3"><span class="header-section-number">2.2.3</span> Example 3</h3>
-<h1 data-number="3" id="next-chapter"><span class="header-section-number">3</span> Next Chapter</h1>
-<h2 data-number="3.1" id="next-subheading"><span class="header-section-number">3.1</span> Next Subheading</h2>
-<h2 data-number="3.2" id="another-very-long-title-that-will-not-fit"><span class="header-section-number">3.2</span> Another very long title that will not fit</h2>
+<h1 data-number="2" id="another-first-level-heading"><span
+class="header-section-number">2</span> Another first level heading</h1>
+<p>The remaining headers in this readme are only added to showcase the
+result in the HTML file.</p>
+<h2 data-number="2.1" id="with-subheading"><span
+class="header-section-number">2.1</span> With subheading</h2>
+<h3 data-number="2.1.1" id="going-deeper"><span
+class="header-section-number">2.1.1</span> Going deeper</h3>
+<h3 data-number="2.1.2" id="more"><span
+class="header-section-number">2.1.2</span> More</h3>
+<h3 data-number="2.1.3"
+id="lets-try-a-completely-long-and-superfluous-title"><span
+class="header-section-number">2.1.3</span> Let’s try a completely long
+and superfluous title</h3>
+<h2 data-number="2.2" id="another-subheading"><span
+class="header-section-number">2.2</span> Another subheading</h2>
+<h3 data-number="2.2.1" id="example-1"><span
+class="header-section-number">2.2.1</span> Example 1</h3>
+<h3 data-number="2.2.2" id="example-2"><span
+class="header-section-number">2.2.2</span> Example 2</h3>
+<h3 data-number="2.2.3" id="example-3"><span
+class="header-section-number">2.2.3</span> Example 3</h3>
+<h1 data-number="3" id="next-chapter"><span
+class="header-section-number">3</span> Next Chapter</h1>
+<h2 data-number="3.1" id="next-subheading"><span
+class="header-section-number">3.1</span> Next Subheading</h2>
+<h2 data-number="3.2"
+id="another-very-long-title-that-will-not-fit"><span
+class="header-section-number">3.2</span> Another very long title that
+will not fit</h2>
 
 <!-- Javascript added by toc-css.lua to make TOC expandable on click -->
 <script>
