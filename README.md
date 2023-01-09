@@ -10,7 +10,7 @@ Pandoc Lua Filter to add floating table of contents to HTML
 
 The filter adds a bit CSS and vanilla Javascript to the HTML output as created by the Pandoc defaults. The actual html is not changed in any way. If you have not added a title for the table of contents then the title "Contents" is automatically added.
 
-Please note that I am not a very proficient CSS/Javascript programmer. I welcome suggestions and improvements! The current version was specifically made for a long book with a very complex structure, the current version can be found [here](https://gitcdn.link/repo/cysouw/diathesis/main/cysouwDiathesisManuscript.html) as an example.
+Please note that I am not a very proficient CSS/Javascript programmer. I welcome suggestions and improvements! The current version was specifically made for a long book with a very complex structure, the current version can be found [here](https://cysouw.github.io/diathesis/) as an example.
 
 ## Usage
 
@@ -18,12 +18,12 @@ Please note that I am not a very proficient CSS/Javascript programmer. I welcome
 - To add a title to the table of contents, either add the following to your metadata: `toc-title: MY-TITLE` or add the option `--metadat=toc-title:"MY-TITLE"` when producing the HTML.
 - The filter itself is added by using `--lua-filter toc-css.lua`.
 
-As an example, consider the following command to convert this `README.md` into [`README.html`](https://gitcdn.link/repo/cysouw/toc-css/main/README.html):
+As an example, consider the following command to convert this `README.md` into [`README.html`](https://cysouw.github.io/toc-css/README.html):
 
 ```
 pandoc README.md \
     --to html \
-    --output README.html \
+    --output docs/README.html \
     --lua-filter toc-css.lua \
     --standalone \
     --toc \
